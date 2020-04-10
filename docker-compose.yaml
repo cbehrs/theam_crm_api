@@ -5,9 +5,11 @@ services:
         depends_on:
             - mongodb
         environment:
-            MONGO_URI: mongodb://mongodb:27017
+            MONGO_URI: mongodb://mongodb:27017/
+            MONGO_DB: theamCrmApiDB
+            MONGO_DB_TEST: theamCrmApiDB_tests
             NODE_ENV: development
-            DEBUG: 'api, db'
+            jwtPrivateKey: theam_crm_api_jwtPrivateKey
             PORT: 3000
         links: [mongodb]
         ports: 

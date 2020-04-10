@@ -1,17 +1,46 @@
-Required installed software for working on this project:
-    1. Docker
-    2. Docker-compose
-    3. Code editor (VS Code is good enough because of the available extensions it has)
-    4. Npm along with Node.js (https://www.npmjs.com/get-npm) this project is using node version ^12.*.*
+# TheAM CRM API
 
-To run the project for the first time:
-    1. Get in "theam_crm_api" folder and run "npm install" in terminal/console.
-    2. Run in terminal/console "docker-compose up"
+_TheAM CRM API_
 
-To set env variables using VS code terminal in windows write powershell commands like '$env:VARIABLE_NAME=VARIABLE_VALUE'
+## Begin 🚀
 
---------morgan is used to log each of the requests made to our endpoint, can be logged to a file
+_Following install instructions will allow you to obtain a copy of the project in operation on your local machine for development and testing purposes. MongoDB is being attached to the project and will be also launched among with the REST Api itself._
 
---------mongoimport --db mongo-exercises --collection courses --drop --file exercise-data.json --jsonArray
+### Install 🔧
 
---------
+```
+git clone https://github.com/cbehrs/theam_crm_api.git
+
+cd theam_crm_api
+
+npm install
+
+docker-compose up **(be sure that Docker engine is running on your local machine)**
+```
+
+```
+Open a browser and access http://localhost:3000
+
+You can send requests to the API via Postman also
+
+You can use MongoDB Compass or add Azure Cosmos DB to your VS Code for managing MongoDB
+```
+
+## Built with 🛠️
+
+* [NodeJs](https://nodejs.org/en/) - Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine.
+* [NPM](https://www.npmjs.com/) - Node Package Manager
+* [Express](https://expressjs.com/) - Fast, unopinionated, minimalist web framework for Node.js
+* [Docker](https://www.docker.com/) - Docker is a platform for developers and sysadmins to develop, deploy, and run applications with containers.
+* [Docker-Compose](https://docs.docker.com/compose/install/) - Docker Compose relies on Docker Engine for any meaningful work.
+* [MongoDB](https://www.mongodb.com/) - MongoDB is a general purpose, document-based, distributed database built for modern application developers.
+
+## Versioned 📌
+
+Using [SemVer](http://semver.org/) for versioning.
+
+## Author ✒️
+
+* **Carlos Behr** - [cbehrs](https://github.com/cbehrs) 
+
+---

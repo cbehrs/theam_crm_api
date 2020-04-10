@@ -1,14 +1,15 @@
 const jwt = require('jsonwebtoken');
-const config = require('config');
 
-module.exports = function (req, res, next) { // middleware function, note the next function for passing control to the next middleware in our app
+module.exports = function (req, res, next) {
     const token = req.header('x-auth-token');
-    if (!token ) return res.status(401).send('Access  denied! No token provided!');
-    try{
-        const tokenDecoded = jwt.verify(token, config.get('jwtPrivateKey'));
+    if (!token) return res.status(401).send('Access  denied! No token provided!');
+
+    try {
+        const tokenDecoded = jwt.verify(token, process.env.jwtPrivateKey);
         req.user = tokenDecoded;
+        process.env.loggedUserId = req.user._id // assigning logged user ID to env variable for updating purposes        
         next();
-    }catch(ex){
+    } catch (ex) {
         res.status(400).send('Invalid token!');
     }
 }
