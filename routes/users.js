@@ -13,7 +13,7 @@ router.get('/', [auth, admin], async (req, res) => {
     res.send(users);
 });
 
-router.post('/', [auth, validate(validateUser), admin], async (req, res) => {
+router.post('/', [auth, admin], async (req, res) => {
     let user = await User.findOne({
         email: req.body.email
     });

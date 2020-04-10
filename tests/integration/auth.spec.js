@@ -3,12 +3,13 @@ const request = require('supertest');
 
 describe('auth middleware', () => {
   let token; 
-
+  
   beforeEach(() => { 
-    server = require('../../index');
     token = new User({isAdmin: true }).generateAuthToken();
+    server = require('../../index');
   });
   afterEach(async () => { 
+    await User.remove({});
     await server.close(); 
   });
 
