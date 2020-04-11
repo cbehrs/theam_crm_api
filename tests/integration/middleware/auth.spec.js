@@ -1,4 +1,4 @@
-const {User} = require('../../models/user');
+const {User} = require('../../../models/user');
 const request = require('supertest');
 
 describe('auth middleware', () => {
@@ -6,7 +6,7 @@ describe('auth middleware', () => {
   
   beforeEach(() => { 
     token = new User({isAdmin: true }).generateAuthToken();
-    server = require('../../index');
+    server = require('../../../index');
   });
   afterEach(async () => { 
     await User.remove({});
@@ -19,8 +19,8 @@ describe('auth middleware', () => {
       .post('/api/users')
       .set('x-auth-token', token)
       .send({ 
-        name: 'Carlos',
-        email: 'carlos@gmail.com',
+        name: 'Customer',
+        email: 'customer@gmail.com',
         password: '12345',
         isAdmin: true 
       });
@@ -32,6 +32,7 @@ describe('auth middleware', () => {
     const res = await exec();
 
     expect(res.status).toBe(401);
+    expect(res.text).toBe('Access  denied! No token provided!');
   });
 
   it('should return 400 if token is invalid', async () => {
@@ -40,6 +41,7 @@ describe('auth middleware', () => {
     const res = await exec();
 
     expect(res.status).toBe(400);
+    expect(res.text).toBe('Invalid token!');
   });
 
   it('should return 200 if token is valid', async () => {
