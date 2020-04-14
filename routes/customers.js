@@ -11,12 +11,13 @@ router.get('/', auth, async (req, res) => {
 });
 
 router.post('/', [auth, validate(validateCustomer)], async (req, res) => {
-
+    console.log("user:::", req.user._id, req.user);
+    
     let customer = new Customer({
         name: req.body.name,
         surname: req.body.surname,
         photo: req.body.photo,
-        updatedBy: process.env.loggedUserId
+        updatedBy: req.user._id
     });
     customer = await customer.save();
 
@@ -28,7 +29,7 @@ router.put('/:id', [auth, validate(validateCustomer), validateObjectId], async (
         name: req.body.name,
         surname: req.body.surname,
         photo: req.body.photo,
-        updatedBy: process.env.loggedUserId
+        updatedBy: req.user._id
     }, {
         new: true // set to true for returning the updated object, false for returning the original
     });

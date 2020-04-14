@@ -7,7 +7,6 @@ module.exports = function (req, res, next) {
     try {
         const tokenDecoded = jwt.verify(token, process.env.jwtPrivateKey);
         req.user = tokenDecoded;
-        process.env.loggedUserId = req.user._id // assigning logged user ID to env variable for updating purposes        
         next();
     } catch (ex) {
         res.status(400).send('Invalid token!');
